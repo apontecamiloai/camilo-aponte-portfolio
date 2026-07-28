@@ -1,0 +1,45 @@
+---
+title: "AI Content Generation & QA Pipeline"
+slug: "ai-content-generation-qa-pipeline"
+summary: "The pipeline behind an 8x knowledge base expansion — drafting, fact-checking, and QA-validating new articles, then routing them through a review queue before publishing."
+category: "Knowledge Engineering"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Claude Code", "Prompt Engineering", "Content Automation", "Python", "Intercom"]
+featured: true
+metrics:
+  - label: "Knowledge base growth"
+    value: "250 → 2,056"
+    description: "8x expansion in structured, AI-ready articles"
+  - label: "AI-assisted drafts generated"
+    value: "1,687"
+  - label: "Knowledge base improvements published"
+    value: "1,320"
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 1
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Growing a knowledge base from 250 to 2,056 articles by hand isn't a staffing problem you solve by writing faster — it's a pipeline problem. Every gap the detection pipeline surfaces still needs a draft, a fact-check, and a human sign-off before it's safe to publish to customers.
+
+## How it works
+
+The pipeline drafts new or updated knowledge base articles from source material and existing conventions, fact-checks the draft's claims against verified sources, and runs it through a QA validation pass before routing it into a review queue. Nothing publishes without a human decision point — the automation compresses the time between "we found a gap" and "a reviewable draft exists," not the accountability for what goes live.
+
+## Outcomes
+
+This pipeline is the engine behind the knowledge base's 8x expansion from 250 to 2,056 structured, AI-ready articles: it has generated 1,687 AI-assisted drafts and published 1,320 knowledge base improvements to date. Of the current knowledge base, approximately 97% was written or re-engineered through this process into documentation a conversational AI agent can actually reason over — not just search.
+
+<LessonsLearned>
+The bottleneck in scaling a knowledge base was never writing speed — it was review throughput. Building fact-checking and QA into the pipeline itself, rather than treating it as a separate manual step, is what made 1,320 published improvements possible without lowering the bar for what reaches a customer.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

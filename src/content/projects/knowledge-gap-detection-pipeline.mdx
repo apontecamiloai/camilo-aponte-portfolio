@@ -1,0 +1,40 @@
+---
+title: "Knowledge Gap Detection Pipeline"
+slug: "knowledge-gap-detection-pipeline"
+summary: "An AI-assisted system using semantic retrieval to analyze real support conversations against the full knowledge base and automatically surface missing or outdated topics — replacing manual content audits."
+category: "Knowledge Engineering"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Claude Code", "Python", "Prompt Engineering", "Semantic retrieval", "Intercom"]
+featured: false
+metrics:
+  - label: "Knowledge gaps identified"
+    value: "331"
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 5
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+A knowledge base only helps a conversational AI agent if it actually covers what customers ask. Before this pipeline existed, finding coverage gaps meant a human periodically skimming support conversations and guessing at patterns — a process that couldn't keep pace with a growing product and a knowledge base scaling past a thousand articles.
+
+## Approach
+
+The pipeline analyzes real support conversations against the existing knowledge base using semantic retrieval rather than keyword matching, so it can recognize that two differently worded questions are really asking the same thing the knowledge base doesn't yet answer. Designed and shipped using Claude Code as an AI-assisted software engineering copilot, it runs continuously rather than as a periodic audit.
+
+## Outcomes
+
+The pipeline has identified 331 distinct knowledge gaps to date, replacing manual content audits with a standing, always-on detection process. Each identified gap feeds directly into the AI Content Generation & QA Pipeline for drafting.
+
+<LessonsLearned>
+Gap detection is only valuable if it's continuous. A one-time audit tells you what was missing on the day you looked; a running pipeline tells you what's missing right now, which is the only version of that answer a live support agent can actually use.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

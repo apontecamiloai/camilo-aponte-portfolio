@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const categories = [...new Set(projects.map((p) => p.data.category))];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Case studies in enterprise AI systems, conversational AI, knowledge engineering, and automation platforms built by Camilo Aponte."
+>
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8">
+    <SectionHeading
+      eyebrow="Selected work"
+      heading="Projects"
+      description="Ten systems from the same 14-month build: enterprise Fin AI integration, the knowledge base pipeline behind it, the governance and recovery layers that keep it trustworthy, and the automation bots running underneath all three."
+    />
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      {
+        categories.map((category) => (
+          <span class="rounded border border-border-muted px-2.5 py-1 font-mono text-xs text-ink-400">
+            {category}
+          </span>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </div>
+</BaseLayout>

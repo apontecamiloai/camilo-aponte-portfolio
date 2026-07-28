@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  article: CollectionEntry<'writing'>;
+}
+
+const { article } = Astro.props;
+const { title, summary, published } = article.data;
+const formattedDate = published.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+
+<a
+  href={`/writing/${article.data.slug}`}
+  class="group flex flex-col rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400/60 hover:shadow-card-hover"
+>
+  <time datetime={published.toISOString()} class="font-mono text-xs text-ink-400">{formattedDate}</time>
+  <h3 class="mt-2 text-xl font-semibold text-ink-100 group-hover:text-accent-400">{title}</h3>
+  <p class="mt-3 text-sm leading-relaxed text-ink-400">{summary}</p>
+  <span class="mt-4 text-sm font-medium text-accent-400">Read article &rarr;</span>
+</a>

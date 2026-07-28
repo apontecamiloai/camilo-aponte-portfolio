@@ -1,0 +1,38 @@
+---
+title: "Article Feature Tagger"
+slug: "article-feature-tagger"
+summary: "An automation that classifies and tags knowledge base articles by product feature, improving content retrieval and organization at scale."
+category: "Knowledge Engineering"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Playwright", "Claude Code", "Intercom"]
+featured: false
+metrics: []
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 8
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+At a couple hundred articles, manually tagging content by product feature is tedious but manageable. At over two thousand, inconsistent or missing tags quietly break both human search and AI retrieval — a correctly written article that's tagged wrong is effectively invisible to whoever's looking for it.
+
+## Approach
+
+The tagger classifies knowledge base articles by the product feature they cover and applies consistent tags automatically, replacing ad hoc manual tagging with a standardized process that scales with the knowledge base itself.
+
+## Outcomes
+
+Consistent, scalable article tagging across the knowledge base — improving both content retrieval for human searchers and filterability for downstream systems like the reporting bot and duplicate-content auditor.
+
+<LessonsLearned>
+Tagging quality is a searchability problem hiding as a data-entry problem. Automating it consistently mattered more than any individual tag being perfectly chosen, because consistency is what makes a taxonomy usable for filtering at scale.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

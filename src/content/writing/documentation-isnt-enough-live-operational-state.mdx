@@ -1,0 +1,32 @@
+---
+title: "Why Documentation Isn't Enough: Designing AI Agents That Reason Over Live Operational State"
+slug: "documentation-isnt-enough-live-operational-state"
+summary: "A resolution-rate plateau that held for nine months wasn't a content gap — it was a live-data gap. What that diagnosis actually looked like, and why more articles would have made it worse."
+published: 2026-07-20
+tags: ["Agentic AI", "Enterprise AI", "Conversational AI"]
+draft: false
+---
+
+For about nine months, our support AI agent's resolution rate held steady in the high-40s to low-50s, no matter how much the knowledge base grew underneath it. The obvious explanation — the one I nearly acted on — was that the content still had gaps. Write more articles, cover more edge cases, and the number should move.
+
+It didn't, and it wasn't going to, because the knowledge base had stopped being the bottleneck.
+
+## The tell was in the failures, not the content
+
+Looking closely at conversations the agent actually failed on, the pattern wasn't missing information. It was questions that depend on state that changes by the minute: *is this job still running? Has this workflow failed? Has the customer exhausted their quota? Is this a known Engineering issue? Does this account already have an available fix?*
+
+No article — however well-written, however recently updated — can answer "is my job running right now." That answer lives in a production system, not a document. A knowledge base is, by definition, a snapshot. Some questions need a live read.
+
+## Why this is easy to miss
+
+Resolution-rate problems default to being read as content problems because content is the variable teams control most directly. Writing another article is fast, visible, and safely within a documentation team's scope. Wiring up a live connector to a production system usually isn't — it requires Engineering time, a data contract, and ongoing maintenance. The path of least resistance and the path of least effectiveness pointed in the same direction, which is exactly what made the misdiagnosis tempting.
+
+## What actually closed the gap
+
+Once the diagnosis changed, so did the fix: production connectors into the systems that actually held the answers, an evidence-first reasoning layer that checks live state before falling back to static content, and a Known Issues detection pass that matches a customer's problem against existing Engineering tickets before attempting to re-diagnose it from scratch. On one measured day, roughly 29% of escalations already matched a known issue — cases that used to be re-investigated from zero every time.
+
+The combination broke a plateau that nine months of content work hadn't moved.
+
+## The transferable lesson
+
+If a metric plateaus despite continued investment in the thing you'd normally invest in, that's the signal to go look at the actual failures directly, not to invest harder in the same direction. The bottleneck had moved from what the agent knew to what it could see — and no amount of better writing would have revealed that. Only looking at where it was actually failing did.

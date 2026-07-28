@@ -1,0 +1,33 @@
+---
+title: "The Conversation Recovery Problem: Catching What Automated Support Silently Loses"
+slug: "conversation-recovery-problem"
+summary: "A conversation Fin AI couldn't resolve, an escalation nobody followed up on, and a customer who simply stopped replying look identical in a raw log to one that ended because the problem was solved. 744 recovery attempts, 258 successful outcomes — and what the gap between them actually means."
+published: 2026-06-22
+tags: ["AI Operations", "Conversational AI", "Customer Support"]
+draft: false
+---
+
+Every conversational support system has a blind spot at the exact moment it hands off — or fails to hand off — to a human. A conversation the AI agent couldn't resolve, an escalation that was flagged but never actually followed up on, a resolution that was recorded without a reliable signal the underlying issue was fixed, and a customer who simply stopped responding mid-conversation: all four look the same in a raw conversation log as one that ended because the problem was genuinely solved.
+
+## Why this gap is invisible by default
+
+Nothing about a closed conversation announces which of these five outcomes actually happened. Without a system specifically built to tell them apart, conversations that needed a human follow-up simply disappear into "closed," indistinguishable from success. The support team has no natural signal to revisit them — the failure is silent by construction.
+
+## Building a system that tells the difference
+
+A conversation recovery system has to define each failure mode precisely enough to detect automatically:
+
+- **Unresolved by the AI agent** — the agent's own resolution signal indicates the conversation ended without an answer.
+- **Escalation not honored** — flagged for human handoff, but no human follow-up actually occurred.
+- **False resolution** — closed as resolved without a reliable signal the underlying issue was actually fixed.
+- **Likely abandoned** — the customer stopped responding before reaching resolution.
+
+Flagged conversations route to proactive customer outreach instead of staying closed by default — turning a passive inbox into an active recovery workflow.
+
+## What the numbers actually mean
+
+To date, this system has made 744 recovery attempts, resulting in 258 successful outcomes — a conversation escalated to a human or confirmed resolved — for a rate of roughly 34.7%. That number reflects a hard ceiling built into the problem itself, not a weakness in the detection logic: some flagged conversations are only recoverable if the customer responds to outreach at all, and a meaningful share never do. The detection is doing its job correctly even when the outreach doesn't land — those are two different problems, and conflating them would be the wrong way to read this metric.
+
+## The design principle that matters most
+
+Getting the trigger definitions right mattered more than any of the automation plumbing around them. A resolution signal that's too generous hides real gaps; one that's too strict floods the recovery queue with false positives and burns trust in the system. Precision at the definition layer, not sophistication at the automation layer, is what makes a recovery system worth trusting at scale.

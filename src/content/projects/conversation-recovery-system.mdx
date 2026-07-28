@@ -1,0 +1,60 @@
+---
+title: "Conversation Recovery System"
+slug: "conversation-recovery-system"
+summary: "An automation that detects conversations Fin AI failed to resolve, escalations that weren't honored, false resolutions, and likely-abandoned chats — then triggers proactive follow-up. 744 recovery attempts, 258 successful outcomes."
+category: "AI Operations"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Intercom", "Python", "Claude Code", "n8n"]
+featured: true
+metrics:
+  - label: "Recovery attempts"
+    value: "744"
+  - label: "Successful outcomes"
+    value: "258"
+    description: "Escalated to a human or confirmed resolved"
+  - label: "Success rate"
+    value: "~34.7%"
+confidentiality: "generalized"
+published: 2026-07-26
+draft: false
+order: 4
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Not every conversation that goes quiet is resolved. A customer whose question Fin AI couldn't answer, whose escalation to a human never got followed up, whose conversation was closed as resolved without an accurate signal that the issue was actually fixed, or who simply stopped responding mid-conversation, looks identical in a raw conversation log to one that ended because the problem was solved.
+
+## Problem
+
+Without a way to tell these apart automatically, conversations that actually needed a human follow-up were going unnoticed — the support team had no systematic way to know which ones to revisit.
+
+## System logic
+
+The system runs as a background automation that continuously reviews conversation state and flags a conversation for proactive follow-up when it matches one of four patterns:
+
+- **Fin AI failed to resolve it** — the agent's own resolution signal indicates the conversation ended without an answer.
+- **An escalation wasn't honored** — the conversation was flagged for human handoff, but no human follow-up actually occurred.
+- **A resolution was false** — the conversation was closed as resolved without a reliable signal that the underlying issue was actually fixed.
+- **The conversation was likely abandoned** — the customer stopped responding before reaching a resolution.
+
+Flagged conversations are routed for proactive customer outreach rather than being left closed by default, turning a passive support inbox into an active recovery workflow.
+
+## Results
+
+Since launch, the system has made **744 recovery attempts**, resulting in **258 successful outcomes** — a conversation escalated to a human or confirmed resolved — for a success rate of roughly **34.7%**. That rate reflects a hard ceiling built into the problem itself: some flagged conversations are recoverable only if the customer responds at all, and a meaningful share never do.
+
+## Operational purpose
+
+This system exists to close a specific gap: automated agents and human support teams both have blind spots at the handoff between them, and this is where customers are most likely to be lost silently. Detecting these conversations automatically, rather than relying on a human to notice a pattern, is what makes the recovery workflow reliable at scale.
+
+<LessonsLearned>
+Detecting failure well requires being just as precise about what counts as success — a resolution signal that's too generous will hide real gaps, and one that's too strict will flood the recovery queue with false positives. Getting the four trigger definitions right mattered more than the automation plumbing around them.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

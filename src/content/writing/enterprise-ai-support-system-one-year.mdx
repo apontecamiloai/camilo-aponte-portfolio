@@ -1,0 +1,72 @@
+---
+title: "Building an Enterprise AI Support System From Scratch: One Year in Numbers"
+slug: "enterprise-ai-support-system-one-year"
+summary: "In June 2025 I inherited a mandate, not a system: no knowledge base worth the name, no AI governance, no connectors. A year later, Fin AI resolves on evidence instead of scripts. Here's how, and what it took — told through the numbers."
+published: 2026-07-27
+tags: ["Agentic AI", "Knowledge Engineering", "Conversational AI", "AI Automation", "Claude Code"]
+draft: false
+---
+
+In June 2025, I inherited a mandate, not a system: no knowledge base worth the name, no AI governance model, no connectors, no operational framework — just a green light to build one from scratch for a fast-growing SaaS company's support function.
+
+The first thing I found was Fin, our AI support agent, running through one deterministic workflow with dozens of hardcoded branches. Every edge case meant another branch — it couldn't scale, and it couldn't reason. Instead of adding branch #47, I redesigned the architecture around one idea: **an AI agent should reason over evidence, not get routed through if/else logic pretending to be intelligence.** That shift became the foundation for everything that followed.
+
+A year later, here's where it stands — told through the numbers, because the numbers are the part that's verifiable.
+
+## Knowledge engineering: an 8x expansion, not just more pages
+
+The knowledge base grew from roughly 250 loosely organized articles to 2,056 structured, AI-ready ones — an 8x expansion. Approximately 97% of that knowledge base was written or re-engineered by me into documentation an AI agent can reason over, not just search. That distinction matters: a human reader can skim past ambiguity; a retrieval system either finds one unambiguous answer or it doesn't.
+
+Behind that growth: a gap-detection pipeline that identified 331 distinct knowledge gaps from real conversations and generated 1,687 AI-assisted drafts, 1,320 of which were published after human review. A parallel governance system removed 446 duplicate articles and audited 649 Guidance issues, so scale didn't come at the cost of quality.
+
+## Reasoning, not routing
+
+The layer I'm proudest of: 78 Guidance Prompts and 17 Procedures, built on live Data Connectors and structured retrieval, so Fin resolves issues on evidence instead of scripts. Resolution climbed from roughly 30% to nearly 70% within the first two months of that redesign.
+
+## The plateau, and the mistake I almost made
+
+Then resolution rate stalled. For about nine months, it held in the high-40s to low-50s despite the knowledge base continuing to grow. The obvious response — the one I nearly reached for — was to write more articles: more coverage, more edge cases documented, more nuance captured.
+
+That would have been the wrong fix, because the knowledge base wasn't the bottleneck anymore. Looking at the conversations Fin actually failed on, the pattern wasn't missing information — it was questions that depend on live state: is this job still running, has this workflow failed, has the customer exhausted their quota, is this a known Engineering issue, does this account already have an available fix. No article, however well-written, can answer "is my job running right now." Only a live connector can.
+
+## Operational AI: connecting the agent to reality
+
+With Engineering, I led the integration of 19 production Data Connectors — spanning services including Billing, Publication Media, Authority Building, Report Builder, and Linear — across 12 internal services and 11 engineering teams, so Fin can see live product and account state instead of only reading static documentation about it.
+
+Once the diagnosis changed, a second, later phase of connector work began: standardizing connector development across 8 product teams, with 6 connectors live at time of writing — distinct from the original 19-connector program, not an extension of its totals. A Known Issues detection layer started matching customer problems against existing Engineering tickets instead of re-diagnosing from scratch — on one measured day, about 29% of escalations already matched a known issue.
+
+The reasoning architecture around all of this was redesigned too: Modular Guidance in place of one large prompt, Specialized Procedures for well-defined troubleshooting flows, a connector-first lookup order, evidence-first decision-making, and consistent escalation logic.
+
+## Breaking the ceiling
+
+The combination — not any single piece of it — is what broke the plateau. Resolution rate reached 65% on a single day (n=32 conversations) and held at 60% over a trailing 7-day window (n=732): the first sustained break above the nine-month ceiling. I want to be honest about what that number is and isn't. Resolution rate is a system-level metric — it moves with Engineering fixes, Product changes, Billing issues, and Support process, not with AI work alone. What I can claim is the diagnosis and the fix: recognizing that the bottleneck had shifted from content to live operational context, and building the connectors and reasoning layer that closed it.
+
+## Browser automation
+
+Some of what a support agent needs to know only exists in the live product UI, not in any database — navigation paths, screenshots, current workflows. Playwright-based, authenticated automation that reuses logged-in sessions inspects product interfaces and flags documentation that has drifted out of sync with the UI, catching stale screenshots and outdated navigation paths automatically.
+
+## Nine systems, zero precedent
+
+Using Claude Code as my AI engineering copilot, I designed, built, and shipped nine production systems that didn't exist before this function did:
+
+- **Knowledge Gap Detection Pipeline** — semantic retrieval that flags missing or outdated knowledge base topics automatically.
+- **AI Content Generation & QA Pipeline** — drafts, fact-checks, QA-validates, and routes new articles through review before publishing.
+- **Custom Answers Center** — builds ready-to-use Fin AI Custom Answer packages from real unresolved conversations. 40 packages generated to date.
+- **Conversation Recovery System** — catches unresolved, unescalated, or falsely-resolved conversations and abandoned chats, then triggers proactive follow-up. 744 recovery attempts, 258 successful outcomes.
+- **Customer Health & Churn Signals Bot** — flags at-risk accounts with evidence, before they churn.
+- **Documentation Governance Auditors** — resolves duplicate and stale knowledge base content continuously as it scales.
+- **Article Feature Tagger** — classifies and tags knowledge base articles by product feature.
+- **KB Request Intake Bot** — classifies and routes incoming knowledge base requests from Slack and ClickUp automatically.
+- **Weekly Fin/KB Reporting Bot** — generates the recurring performance report on schedule.
+
+## The lesson
+
+What I'm proudest of isn't any single piece of this. It's that knowledge engineering, live operational data, browser automation, and AI reasoning now work as one system — one that keeps getting better at helping customers, on its own, because every part of it feeds the others: gap detection feeds content generation, governance keeps that content trustworthy, and live connectors give the reasoning layer something real to reason about. When a metric plateaus, the instinct to add more of what worked before is exactly the instinct to check against the evidence first — no amount of better writing would have found this bottleneck. Only looking at where the agent was actually failing did.
+
+## What comes next
+
+I'm currently going deeper on LangChain, LangGraph, advanced Retrieval-Augmented Generation, and vector databases (Qdrant, Pinecone, Weaviate) — the next layer needed to keep pushing resolution rate and knowledge quality further, and to formalize evaluation across a system this size.
+
+---
+
+*Metrics in this article are drawn from the Intercom API (article and resolution-rate figures) and internal pipeline records, verified as of July 2026. Intercom cannot distinguish pipeline-authored from manually authored knowledge base content when both are posted under the same admin account.*

@@ -1,0 +1,35 @@
+---
+interface Props {
+  heading: string;
+  description?: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const { heading, description, primaryLabel, primaryHref, secondaryLabel, secondaryHref } = Astro.props;
+---
+
+<div class="border-t-2 border-accent-500 pt-10 text-center md:pt-12">
+  <h2 class="text-2xl font-semibold tracking-tight text-ink-100 md:text-3xl">{heading}</h2>
+  {description && <p class="mx-auto mt-3 max-w-xl text-base text-ink-400">{description}</p>}
+  <div class="mt-7 flex flex-wrap items-center justify-center gap-4">
+    <a
+      href={primaryHref}
+      class="rounded bg-accent-500 px-5 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-accent-400"
+    >
+      {primaryLabel}
+    </a>
+    {
+      secondaryLabel && secondaryHref && (
+        <a
+          href={secondaryHref}
+          class="rounded border border-border-muted px-5 py-2.5 text-sm font-medium text-ink-100 transition-colors hover:border-accent-400 hover:text-accent-400"
+        >
+          {secondaryLabel}
+        </a>
+      )
+    }
+  </div>
+</div>

@@ -1,0 +1,28 @@
+---
+title: "From Localization QA to Knowledge Engineering: What Translation Taught Me About Writing for Machines"
+slug: "localization-qa-to-knowledge-engineering"
+summary: "Before knowledge engineering, I did linguistic QA on shipped video game localizations. The skill transferred directly: reading a sentence for what it will actually cause the reader — human or machine — to do, not what it was intended to say."
+published: 2026-06-15
+tags: ["Knowledge Engineering", "Technical Writing", "Career"]
+draft: false
+---
+
+Before I was structuring knowledge bases for AI retrieval, I was doing linguistic and functional QA on Spanish-language localizations of shipped video games — checking that a translated menu item, a piece of dialogue, or an interface label meant what it was supposed to mean, and behaved the way it was supposed to behave, once it landed in front of a real player.
+
+That sounds like a different job. It isn't.
+
+## The shared discipline
+
+Localization QA trains one specific habit: reading a piece of text for what it will actually cause the reader to do, not what the source text intended to say. A technically accurate translation that reads as unnatural, or that creates ambiguity a player will trip over, fails QA — even though every word is "correct." The failure mode isn't a language problem. It's a reader-model problem: predicting how a specific reader, under specific constraints, will actually interpret this specific sentence.
+
+Writing a knowledge base article that a retrieval system can use is the same discipline pointed at a different reader. A support article can be factually accurate and still fail — because it answers three questions at once, uses inconsistent terminology, or buries the one sentence a retrieval system needs to extract behind three sentences of context it doesn't need. The failure mode isn't a fact problem. It's a reader-model problem again, just with a different kind of reader.
+
+## What changes, and what doesn't
+
+What changes between localization QA and knowledge engineering is the reader: a player interpreting dialogue in real time, versus a language model extracting a single unambiguous answer from a support article. What doesn't change is the underlying question every sentence has to answer before it ships: *given exactly who or what reads this next, and how, does this sentence do what I need it to do — or does it just look correct?*
+
+## Why this matters for AI-ready documentation specifically
+
+An AI retrieval system is, in a real sense, the least forgiving reader a piece of writing will ever have. It won't infer context you didn't state, won't forgive an ambiguous pronoun, and won't recognize that two differently worded headings mean the same thing unless the underlying structure tells it so. Writing for that reader isn't a new skill invented by AI — it's the oldest skill in translation and editorial work, applied with less room for the writer to get away with almost-right.
+
+That's the throughline from a career spent checking whether a translated line of dialogue would actually land the way it was meant to, to building a knowledge base that a conversational AI agent could reason over at scale: the tools changed completely, the underlying discipline never did.

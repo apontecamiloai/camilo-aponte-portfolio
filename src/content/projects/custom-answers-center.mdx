@@ -1,0 +1,40 @@
+---
+title: "Custom Answers Center"
+slug: "custom-answers-center"
+summary: "Generates ready-to-use Fin AI Custom Answer packages — answer, utterances, and tags — directly from unresolved customer conversations, closing the agent's answer gaps faster than manual drafting."
+category: "Conversational AI"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Prompt Engineering", "Conversational AI", "Claude Code", "Intercom Fin AI"]
+featured: false
+metrics:
+  - label: "Custom Answer packages generated"
+    value: "40"
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 6
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Intercom's Fin AI has no API for Custom Answers — every one has to be assembled and entered manually: the answer text, a set of sample customer utterances that should trigger it, and the right tags. Doing that well, for every unresolved conversation Fin AI couldn't handle, doesn't scale as a fully manual task.
+
+## Approach
+
+The Custom Answers Center builds a complete, ready-to-use Custom Answer package directly from a production conversation Fin AI failed to resolve: the answer itself, a set of representative utterances, and appropriate tags — assembled from the real conversation rather than written from scratch. A human still reviews and enters each package, since Intercom has no API for this step, but the drafting work that used to take the most time is already done.
+
+## Outcomes
+
+40 complete Custom Answer packages generated to date, each one closing a specific gap Fin AI had already demonstrated it couldn't handle on its own.
+
+<LessonsLearned>
+The most valuable input for a Custom Answer isn't a hypothetical question — it's the actual conversation where a real customer asked it and Fin AI failed. Building the generator around real failed conversations, instead of guessing at likely questions, is what kept the output usable without heavy editing.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://camilo-aponte-portfolio.vercel.app/sitemap-index.xml

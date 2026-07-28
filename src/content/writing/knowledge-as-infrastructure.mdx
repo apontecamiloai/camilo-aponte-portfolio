@@ -1,0 +1,34 @@
+---
+title: "Knowledge as Infrastructure: A Practical Framework for AI-Ready Documentation"
+slug: "knowledge-as-infrastructure"
+summary: "Growing a knowledge base 8x while it actively serves a conversational AI agent requires treating documentation like a production system: owned, reviewed, and measured — not written once and left alone."
+published: 2026-07-13
+tags: ["Knowledge Engineering", "Documentation Governance", "AI Automation"]
+draft: false
+---
+
+Most knowledge bases are built for a human who reads top to bottom and uses judgment to fill in gaps. That model breaks the moment an AI agent is expected to retrieve a single, unambiguous answer from the same content. Growing a knowledge base from 250 to 2,056 articles while it actively served a conversational AI agent forced a different framework — one that treats documentation as infrastructure, not reference material.
+
+## What "AI-ready" actually requires
+
+An article is AI-ready when a retrieval system can find it, extract one unambiguous answer, and cite it without follow-up disambiguation. That's a stricter bar than "accurate." It requires:
+
+- **One topic per article.** An article answering three related questions at once is effectively unretrievable for any single one of them.
+- **Consistent terminology.** The same concept described differently across articles is one of the most common, and most avoidable, causes of retrieval failure.
+- **Structure a model can rely on.** Predictable headings and formatting let a retrieval system extract the right section instead of guessing.
+
+## Growth and governance have to move together
+
+Scaling article count without a parallel quality framework just produces more content to get lost in. The systems that made an 8x expansion usable, not just large, ran in parallel from the start:
+
+- **Gap detection** — analyzing real support conversations against existing content to find what's actually missing, rather than guessing.
+- **Duplicate detection** — semantic similarity search to catch articles answering the same question in different words before they fragment an answer across multiple entries.
+- **UI-drift auditing** — a Playwright-based crawler checking articles against the live product, since a screenshot or navigation path can go stale the moment the product changes underneath it.
+
+## Ownership is a technical requirement, not a nicety
+
+A knowledge base without a defined owner and review cadence degrades in predictable, invisible ways. Every article needs an accountable owner and a scheduled freshness check — not a one-time publish-and-forget event. This isn't process for its own sake; it's what makes a knowledge base something a production system can depend on. In practice, this looks a lot like Knowledge-Centered Service (KCS) discipline applied to an AI-consumed knowledge base: capture knowledge at the point of use, keep it current through continuous review rather than periodic rewrites, and treat improvement as an ongoing responsibility rather than a project with an end date.
+
+## The result
+
+Growth and governance built together, not sequentially, is what took a 250-article reference document and turned it into infrastructure that a conversational AI agent could reliably reason over at 8x the scale — with the article count as a side effect of the framework, not the goal of it.

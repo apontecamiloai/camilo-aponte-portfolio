@@ -1,0 +1,32 @@
+---
+title: "AI-Assisted Drafting Without Losing Editorial Control: A Human-in-the-Loop Workflow"
+slug: "ai-assisted-drafting-human-in-the-loop"
+summary: "1,687 AI-assisted drafts, 1,320 published. The gap between those two numbers is the review process — and it's the part of this pipeline that actually matters."
+published: 2026-06-08
+tags: ["AI-assisted Software Engineering", "Knowledge Engineering", "Documentation Governance"]
+draft: false
+---
+
+The easy part of AI-assisted content generation is generating content. The pipeline behind an 8x knowledge base expansion generated 1,687 AI-assisted drafts — but only 1,320 of them were published. That gap of roughly 22% isn't waste or inefficiency. It's the review process doing exactly what it's supposed to do, and it's the part of this system that actually matters.
+
+## Speed and accountability are different problems
+
+AI compresses the time between "we found a gap" and "a draft exists" dramatically. It does nothing, on its own, to establish whether that draft is accurate, appropriately scoped, or safe to publish to a customer. Treating those as the same problem — assuming a fast draft is a finished one — is how AI-assisted content pipelines quietly ship confident-sounding mistakes at scale.
+
+## What the review layer actually checks
+
+Every AI-generated draft passes through explicit stages before publication:
+
+- **Fact validation** — every factual claim checked against a verified source, not assumed correct because it reads fluently. Fluent and correct are not the same property, and a model optimized for the former doesn't automatically deliver the latter.
+- **Editorial review** — tone, clarity, and structure checked against a consistent style standard, so a knowledge base doesn't read like a hundred different authors even when a model drafted most of it.
+- **Technical review** — a subject-matter owner confirms the content is actually current and correct, since a draft can be well-written and still describe a feature that changed last week.
+
+A draft that fails any of these stages doesn't publish. That's the ~22% gap between drafts generated and improvements published — not overhead, but the mechanism that makes the other 78% trustworthy.
+
+## Why this scales better than either extreme
+
+Fully manual content creation doesn't scale to thousands of articles without a proportionally large team. Fully automated publishing scales content volume while quietly eroding trust in whatever gets published, because nothing is checking the model's confident mistakes before a customer sees them. A human-in-the-loop pipeline is the only version of this that scales article count *and* preserves the thing that makes a knowledge base worth trusting in the first place: every published article still has an accountable person behind the decision to publish it, even when a model wrote the first draft.
+
+## The takeaway
+
+AI-assisted doesn't mean AI-decided. The value of this pipeline isn't that it removes human judgment from content publishing — it's that it removes the mechanical parts of drafting so human judgment can be spent entirely on the parts that actually require it: is this true, is this clear, is this still current.

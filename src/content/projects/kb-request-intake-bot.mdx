@@ -1,0 +1,38 @@
+---
+title: "KB Request Intake Bot"
+slug: "kb-request-intake-bot"
+summary: "A bot that classifies incoming knowledge base requests from Slack and ClickUp and routes templated responses automatically, reducing manual triage."
+category: "Automation Systems"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Automation", "Slack API", "Claude Code", "ClickUp"]
+featured: false
+metrics: []
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 10
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Requests for new or updated knowledge base content arrive from wherever a teammate happens to notice a gap — a Slack message, a ClickUp comment, a passing mention in a support thread. Before this bot, every one of those had to be manually read, understood, and triaged into the content pipeline.
+
+## Approach
+
+The bot classifies incoming knowledge base requests from Slack and ClickUp automatically and routes a templated response, so the requester gets an immediate acknowledgment and the request lands in the right place in the content pipeline without manual triage.
+
+## Outcomes
+
+Faster acknowledgment for teammates flagging content gaps, and less manual sorting work at the front door of the knowledge base pipeline.
+
+<LessonsLearned>
+Intake is a routing problem, not a content problem — most of the manual effort here was never about understanding the request, it was about remembering where it needed to go. Automating the routing, not the judgment, was the right scope for this bot.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

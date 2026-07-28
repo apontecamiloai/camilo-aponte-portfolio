@@ -1,0 +1,25 @@
+---
+import { profile } from '../data/profile';
+---
+
+<ul class="flex items-center gap-5">
+  {
+    profile.socials.map((social) => (
+      <li>
+        <a
+          href={social.url}
+          class="text-sm text-ink-400 transition-colors hover:text-accent-400"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {social.label}
+        </a>
+      </li>
+    ))
+  }
+  <li>
+    <a href={`mailto:${profile.email}`} class="text-sm text-ink-400 transition-colors hover:text-accent-400">
+      Email
+    </a>
+  </li>
+</ul>

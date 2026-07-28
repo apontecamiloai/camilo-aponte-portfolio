@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found" description="This page could not be found." noIndex={true}>
+  <div class="mx-auto max-w-content px-6 py-24 text-center md:px-8">
+    <p class="font-mono text-sm text-accent-400">404</p>
+    <h1 class="mt-3 text-3xl font-semibold text-ink-100 md:text-4xl">Page not found</h1>
+    <p class="mx-auto mt-4 max-w-md text-base text-ink-400">
+      That page doesn't exist or has moved. Try the homepage, or head straight to the case studies.
+    </p>
+    <a
+      href="/"
+      class="mt-8 inline-block rounded bg-accent-500 px-5 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-accent-400"
+    >
+      Back to homepage
+    </a>
+  </div>
+</BaseLayout>

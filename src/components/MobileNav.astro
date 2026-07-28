@@ -1,0 +1,54 @@
+---
+import { primaryNav } from '../data/navigation';
+---
+
+<details class="mobile-nav md:hidden">
+  <summary
+    class="flex cursor-pointer list-none items-center justify-center rounded border border-border-muted p-2 text-ink-100"
+    aria-label="Toggle navigation menu"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      class="h-5 w-5"
+      aria-hidden="true"
+    >
+      <path d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </summary>
+
+  <nav aria-label="Mobile" class="absolute right-0 top-full w-56 max-w-[calc(100vw-3rem)] border border-border-muted bg-navy-900 px-4 py-4 shadow-card">
+    <ul class="flex flex-col gap-1">
+      {
+        primaryNav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block whitespace-nowrap rounded px-2 py-3 text-sm text-ink-100 hover:bg-navy-800 hover:text-accent-400"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</details>
+
+<style>
+  .mobile-nav {
+    position: relative;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav[open] summary svg {
+    color: var(--color-accent-400);
+  }
+</style>

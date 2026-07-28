@@ -1,0 +1,29 @@
+---
+interface Props {
+  steps: string[];
+  caption?: string;
+}
+
+const { steps, caption } = Astro.props;
+---
+
+<figure class="my-8 rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card">
+  <div class="flex flex-col items-stretch gap-2 overflow-x-auto md:flex-row md:flex-wrap md:items-center md:gap-3">
+    {
+      steps.map((step, index) => (
+        <>
+          <div class="min-w-0 flex-1 basis-32 rounded border border-border-muted bg-navy-950 px-4 py-3 text-center font-mono text-sm text-ink-100">
+            {step}
+          </div>
+          {index < steps.length - 1 && (
+            <div class="flex shrink-0 items-center justify-center text-accent-400" aria-hidden="true">
+              <span class="hidden md:inline">&rarr;</span>
+              <span class="md:hidden">&darr;</span>
+            </div>
+          )}
+        </>
+      ))
+    }
+  </div>
+  {caption && <figcaption class="mt-4 text-center text-xs text-ink-400">{caption}</figcaption>}
+</figure>

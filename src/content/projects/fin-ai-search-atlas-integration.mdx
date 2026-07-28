@@ -1,0 +1,100 @@
+---
+title: "Fin AI × Search Atlas Service Integration Program"
+slug: "fin-ai-search-atlas-integration"
+summary: "Led and architected the integration of Fin AI with 12 internal services across 11 engineering teams, delivering 19 live Data Connectors and 17 operational Procedures — then broke a 9-month resolution-rate ceiling with a live-data reasoning redesign."
+category: "Enterprise AI Systems"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+endDate: 2025-12-15
+status: "completed"
+technologies: ["Intercom Fin AI", "Data Connectors", "Procedures", "Linear", "API integration", "Data contract design"]
+featured: true
+metrics:
+  - label: "Internal services integrated"
+    value: "12"
+  - label: "Engineering teams"
+    value: "11"
+  - label: "Live Data Connectors"
+    value: "19"
+  - label: "Operational Procedures"
+    value: "17"
+  - label: "Sustained resolution rate"
+    value: "60%"
+    description: "7-day trailing, n=732; first sustained break above a ~9-month plateau"
+  - label: "Escalations matching known issues"
+    value: "~29%"
+    description: "Single measured day; Known Issues detection pipeline"
+confidentiality: "generalized"
+published: 2026-07-26
+draft: false
+order: 3
+---
+
+import DecisionBlock from '../../components/DecisionBlock.astro';
+import ArchitectureDiagram from '../../components/ArchitectureDiagram.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+
+## Context
+
+Search Atlas runs Fin AI, an Intercom-based conversational agent, as the front door for customer support. When I joined, the agent had no production connections into the company's own internal services — every question about billing, publication status, authority-building progress, or site audit results had to be escalated to a human, even when the answer already existed in a live system.
+
+## Problem
+
+Customers were asking Fin AI questions that only made sense to answer by querying a live service — "what's the status of my last publication," "why did my authority score change," "what's on my current invoice." Without a standard way to connect those services to the agent, every integration risked becoming a one-off, inconsistent effort across teams that didn't share a data contract.
+
+## My role
+
+I led and architected this program end to end: I authored the shared data-contract standard every connector had to implement, coordinated with engineers across 11 teams to scope and validate each connector, and personally initiated several integrations rather than waiting for them to be assigned to me.
+
+## Architecture
+
+<ArchitectureDiagram
+  steps={["User", "Conversational AI", "Intent / Procedure Layer", "Canonical Runtime Schema", "Data Connectors", "Internal Services"]}
+  caption="Conceptual flow: a user's question is routed through Fin AI's intent and Procedure layer, normalized against the Canonical Runtime Schema, and resolved by the relevant Data Connector against the owning internal service."
+/>
+
+Over roughly 6.5 months, this architecture was used to integrate Fin AI with 12 internal services — Billing, Publication Media, Authority Building, Website Studio, OTTO PPC, Frontend, Keyword Engine, Content Genius, GBP/Local SEO, Site Audit, Report Builder, and Signal Genesys — plus Linear, across 11 engineering teams. The result: 19 live Data Connectors and 17 operational Procedures.
+
+## Key decisions
+
+<DecisionBlock title="Authoring the V1 Canonical Runtime Schema">
+Rather than let each team define its own connector payload shape, I authored the V1 Canonical Runtime Schema — a shared data-contract standard defining field naming, availability semantics, fallback semantics, and retry behavior. Every connector had to implement this contract, which meant new integrations could be reviewed against one standard instead of renegotiated from scratch each time.
+</DecisionBlock>
+
+<DecisionBlock title="Redesigning around domain-based lookup">
+One proposed data contract would have required customers to supply a numeric account ID before Fin AI could look anything up — a real usability problem, since most customers don't know or carry that ID in a conversation. I pushed back on that design and helped redesign the lookup around domain-based identification instead, so the agent could resolve a customer's context from information they'd naturally already provide. Diagnosing this kind of gap also surfaced a `customer_id` / `user_id` mismatch between systems, which was later confirmed as a root cause by the engineering team.
+</DecisionBlock>
+
+## The real bottleneck wasn't documentation
+
+For most of the year after the initial integration program shipped, Fin AI's resolution rate held in the high-40s to low-50s — a plateau that lasted roughly nine months despite continued knowledge base growth. The instinct is to read a resolution-rate ceiling as a content problem and respond by writing more articles. That instinct was wrong here.
+
+The recurring failure pattern was Fin AI being asked questions that depend on live customer or product state — is this job still running, has this workflow failed, has the customer exhausted their quota, is this a known Engineering issue, does this account already have an available fix — while the agent had access only to static documentation. No article can answer "is my job still running right now." That gap only closes with a live connector, not a better-written page.
+
+## Reasoning and governance redesign
+
+Closing that gap meant redesigning how Fin AI reasons, not just what it can look up:
+
+- **Modular Guidance** — behavior and content rules broken into composable units instead of one monolithic prompt.
+- **Specialized Procedures** — step-by-step, conditional troubleshooting flows for well-defined problem types.
+- **Connector-first architecture** — live data queried before the agent falls back to static content.
+- **Evidence-first decision making** — answers grounded in retrieved evidence rather than generated from general knowledge.
+- **Standardized troubleshooting** — consistent diagnostic sequences across problem categories.
+- **Known Issues detection** — matching a customer's problem against existing Engineering issues before attempting to re-diagnose it from scratch. On one measured day, roughly **29% of escalations** already matched a known Engineering issue.
+- **Consistent escalation logic** — predictable rules for when to hand off to a human instead of ad hoc judgment calls.
+
+## Recent momentum
+
+That redesign, combined with the connector rollout described above, produced the first sustained break above the nine-month plateau: Fin AI's resolution rate reached **65%** on a single day (n=32 conversations) and held at **60%** over the trailing 7 days (n=732). I hold this number carefully — resolution rate is a system-level metric shaped by Engineering, Product, Billing, and Support, not something AI ownership alone moves. What did move it was correctly diagnosing that the bottleneck was live operational context, not content coverage.
+
+## Outcomes
+
+12 internal services connected, 11 engineering teams coordinated, 19 live Data Connectors and 17 Procedures shipped, a canonical data-contract standard adopted across every integration in the program, and — in the current phase — a sustained resolution rate above a plateau that had held for roughly nine months.
+
+<LessonsLearned>
+The hardest part of an integration program like this isn't writing any single connector — it's getting independent teams to agree on one contract before they start building. Authoring the schema first, and being willing to challenge a proposed design (like the numeric account ID requirement) before it shipped, saved far more rework than it cost in up-front negotiation. Later, the same discipline applied to diagnosis: a plateaued metric is not automatically a content problem, and confirming that took more evidence-gathering than assuming it and writing more articles.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

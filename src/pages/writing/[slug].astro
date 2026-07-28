@@ -1,0 +1,31 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+  );
+
+  return articles.map((article, index) => {
+    const previous = articles[index - 1];
+    const next = articles[index + 1];
+
+    return {
+      params: { slug: article.data.slug },
+      props: {
+        article,
+        previous: previous ? { title: previous.data.title, href: `/writing/${previous.data.slug}` } : undefined,
+        next: next ? { title: next.data.title, href: `/writing/${next.data.slug}` } : undefined,
+      },
+    };
+  });
+}
+
+const { article, previous, next } = Astro.props;
+const { Content, headings } = await render(article);
+---
+
+<ArticleLayout article={article} headings={headings} previous={previous} next={next}>
+  <Content />
+</ArticleLayout>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Reach Camilo Aponte for AI Automation, Agentic AI, Conversational AI, and Knowledge Engineering roles."
+>
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8">
+    <SectionHeading eyebrow="Contact" heading="Get in touch" />
+
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-ink-400">
+      Open to remote roles in AI Automation, Agentic AI, Conversational AI, and Knowledge Engineering. I'm also glad
+      to talk shop about enterprise Fin AI integrations or knowledge-base architecture even if there's no role
+      attached.
+    </p>
+
+    <a
+      href={`mailto:${profile.email}`}
+      class="mt-4 inline-block font-mono text-lg text-accent-400 hover:text-accent-300"
+    >
+      {profile.email}
+    </a>
+
+    <dl class="mt-10 grid grid-cols-1 gap-6 text-sm md:grid-cols-3">
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-widest text-ink-500">Location</dt>
+        <dd class="mt-1 text-ink-100">{profile.location}</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-widest text-ink-500">Availability</dt>
+        <dd class="mt-1 text-ink-100">{profile.workMode}</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-widest text-ink-500">Elsewhere</dt>
+        <dd class="mt-1">
+          <SocialLinks />
+        </dd>
+      </div>
+    </dl>
+  </div>
+</BaseLayout>

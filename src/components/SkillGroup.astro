@@ -1,0 +1,17 @@
+---
+import TechTag from './TechTag.astro';
+
+interface Props {
+  title: string;
+  skills: string[];
+}
+
+const { title, skills } = Astro.props;
+---
+
+<div>
+  <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-accent-400">{title}</h3>
+  <div class="mt-3 flex flex-wrap gap-2">
+    {skills.map((skill) => <TechTag label={skill} />)}
+  </div>
+</div>

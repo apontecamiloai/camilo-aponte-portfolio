@@ -1,0 +1,43 @@
+---
+title: "Documentation Governance Auditors"
+slug: "documentation-governance-auditors"
+summary: "Two AI tools that keep a growing knowledge base clean: a UI-drift auditor that flags stale screenshots and navigation paths against the live product, and a duplicate-content auditor that resolves redundant articles via semantic similarity."
+category: "Knowledge Engineering"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Playwright", "Automation", "Claude Code", "Semantic similarity search", "Intercom"]
+featured: true
+metrics:
+  - label: "Duplicate articles removed"
+    value: "446"
+  - label: "Guidance issues audited"
+    value: "649"
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 2
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Growth and governance have to be built together, or growth wins and quality loses. An 8x knowledge base expansion is only useful if it doesn't also 8x the number of duplicate answers, stale screenshots, and outdated navigation paths a customer or an AI agent might land on.
+
+## Two auditors, two failure modes
+
+- **UI-drift auditor** — a Playwright-based crawler that maps the live product interface and flags articles whose screenshots or navigation paths no longer match what's actually in the product.
+- **Duplicate-content auditor** — uses semantic similarity search to find articles answering the same question in different words, and routes them for consolidation instead of letting them fragment the answer to a single topic across several entries.
+
+## Outcomes
+
+These two auditors have removed 446 duplicate articles and audited and improved 649 Guidance issues to date — continuous governance running alongside the knowledge base's growth, not a periodic cleanup project bolted on afterward.
+
+<LessonsLearned>
+Duplicate detection and UI-drift detection look like two unrelated problems, but they're the same failure mode from different angles: content that's technically still "in" the knowledge base but no longer trustworthy. Treating both as one governance function, not two separate side projects, is what kept them running continuously instead of becoming another backlog.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

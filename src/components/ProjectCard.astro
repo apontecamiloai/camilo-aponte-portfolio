@@ -1,0 +1,36 @@
+---
+import TechTag from './TechTag.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, summary, category, role, technologies, metrics } = project.data;
+const headlineMetric = metrics[0];
+---
+
+<a
+  href={`/projects/${project.data.slug}`}
+  class="group flex flex-col rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400/60 hover:shadow-card-hover"
+>
+  <p class="font-mono text-xs uppercase tracking-widest text-accent-400">{category}</p>
+  <h3 class="mt-2 text-xl font-semibold text-ink-100 transition-colors group-hover:text-accent-400">{title}</h3>
+  <p class="mt-1 text-xs text-ink-500">{role}</p>
+  <p class="mt-3 text-sm leading-relaxed text-ink-400">{summary}</p>
+
+  <div class="mt-4 flex flex-wrap gap-2">
+    {technologies.slice(0, 4).map((tech) => <TechTag label={tech} />)}
+  </div>
+
+  {
+    headlineMetric && (
+      <p class="mt-4 font-mono text-sm text-ink-100">
+        {headlineMetric.value} <span class="text-ink-400">{headlineMetric.label}</span>
+      </p>
+    )
+  }
+
+  <span class="mt-4 text-sm font-medium text-accent-400">Read case study &rarr;</span>
+</a>

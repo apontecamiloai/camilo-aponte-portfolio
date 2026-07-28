@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MetricGrid from '../components/MetricGrid.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { getCollection } from 'astro:content';
+import { impactMetrics } from '../data/metrics';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
+const allArticles = await getCollection('writing', ({ data }) => !data.draft);
+const recentArticles = allArticles
+  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
+  .slice(0, 2);
+---
+
+<BaseLayout
+  title="Camilo Aponte | AI Automation Engineer"
+  description="AI Automation Engineer who built Search Atlas's AI Automation function from zero — enterprise Fin AI integrations, a 2,056-article knowledge base, and the automation systems that keep both running."
+>
+  <Hero />
+
+  <section class="border-b border-border-muted bg-navy-900/40">
+    <div class="mx-auto max-w-content px-6 py-16 md:px-8">
+      <SectionHeading eyebrow="Impact" heading="The numbers behind the system" />
+      <div class="mt-8">
+        <MetricGrid metrics={impactMetrics} />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-border-muted">
+    <div class="mx-auto max-w-content px-6 py-16 md:px-8">
+      <SectionHeading
+        eyebrow="Selected work"
+        heading="Four systems, one operating model"
+        description="Case studies covering the Fin AI integration program, the knowledge base pipeline behind it, the governance system that keeps that knowledge base clean, and the conversation-recovery layer that catches what still falls through the cracks."
+      />
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <div class="mt-8">
+        <a href="/projects" class="text-sm font-medium text-accent-400 hover:text-accent-300">
+          View all projects &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-border-muted bg-navy-900/40">
+    <div class="mx-auto max-w-content px-6 py-16 md:px-8">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-[2fr_1fr] md:items-start">
+        <div>
+          <SectionHeading
+            eyebrow="About"
+            heading="Twenty years of explaining things — the last fourteen months to machines"
+          />
+          <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-400">
+            Two decades as a radio journalist, a university lecturer, and a certified language examiner taught me
+            one skill: figuring out what a reader needs to understand something, and in what order. Fourteen months
+            ago I brought that skill to Search Atlas, where a chatbot with no governance model and a 250-article
+            knowledge base has since become an enterprise AI ecosystem — 19 live connectors across 12 internal
+            services, resolution rate up from ~30% to ~70%.
+          </p>
+        </div>
+        <div class="md:pt-9">
+          <a href="/about" class="text-sm font-medium text-accent-400 hover:text-accent-300">
+            Read the full story &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-border-muted">
+    <div class="mx-auto max-w-content px-6 py-16 md:px-8">
+      <SectionHeading eyebrow="Writing" heading="Notes from the build" />
+      <div class="mt-8">
+        {
+          recentArticles.length > 0 ? (
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {recentArticles.map((article) => <ArticleCard article={article} />)}
+            </div>
+          ) : (
+            <div class="rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card">
+              <p class="text-sm text-ink-400">
+                Coming soon: <span class="text-ink-100">Building an Enterprise AI Support System From Scratch: One
+                Year in Numbers</span> — why the hardest problem turned out not to be documentation at all.
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-content px-6 py-16 md:px-8">
+      <CallToAction
+        heading="Let's talk about your AI operations"
+        description="Open to remote roles in AI Automation, Agentic AI, Conversational AI, and Knowledge Engineering."
+        primaryLabel="Get in touch"
+        primaryHref="/contact"
+        secondaryLabel="View resume"
+        secondaryHref="/resume"
+      />
+    </div>
+  </section>
+</BaseLayout>

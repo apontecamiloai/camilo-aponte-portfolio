@@ -1,0 +1,36 @@
+---
+interface NavEntry {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  previous?: NavEntry;
+  next?: NavEntry;
+}
+
+const { previous, next } = Astro.props;
+---
+
+{
+  (previous || next) && (
+    <nav aria-label="Related content" class="mt-12 grid grid-cols-1 gap-4 border-t border-border-muted pt-8 md:grid-cols-2">
+      <div>
+        {previous && (
+          <a href={previous.href} class="block rounded-md border border-border-subtle p-4 transition-colors hover:border-accent-400/60 hover:bg-navy-850">
+            <span class="text-xs text-ink-500">&larr; Previous</span>
+            <p class="mt-1 text-sm font-medium text-ink-100">{previous.title}</p>
+          </a>
+        )}
+      </div>
+      <div class="md:text-right">
+        {next && (
+          <a href={next.href} class="block rounded-md border border-border-subtle p-4 transition-colors hover:border-accent-400/60 hover:bg-navy-850">
+            <span class="text-xs text-ink-500">Next &rarr;</span>
+            <p class="mt-1 text-sm font-medium text-ink-100">{next.title}</p>
+          </a>
+        )}
+      </div>
+    </nav>
+  )
+}

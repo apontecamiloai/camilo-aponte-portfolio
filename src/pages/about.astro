@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SkillGroup from '../components/SkillGroup.astro';
+import { skillGroups } from '../data/skills';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout
+  title="About"
+  description="Camilo Aponte: twenty years of writing and documentation experience, now building AI-ready knowledge infrastructure — enterprise Fin AI integrations, a 2,056-article knowledge base, and the systems that keep both accurate."
+>
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <SectionHeading eyebrow="About" heading="About" />
+      <img
+        src="/images/camilo-headshot.jpg"
+        alt="Portrait of Camilo Aponte"
+        width="160"
+        height="160"
+        class="h-20 w-20 shrink-0 rounded-md border border-border-subtle object-cover shadow-card md:h-24 md:w-24"
+      />
+    </div>
+
+    <div class="prose-body mt-8">
+      <p>
+        Twenty years of professional writing and documentation experience came before this work — eighteen in
+        journalism, language education, and publishing, two in localization QA — and the last fourteen months have
+        gone into building AI-ready knowledge infrastructure. I spent almost two decades explaining things for a living before
+        I spent any of it writing code: as a radio journalist at Caracol Radio, a university Spanish lecturer, and a
+        certified DELE examiner for the Instituto Cervantes. That work was really one skill applied three ways —
+        figuring out what an audience actually needs to understand something, in what order, with how much context.
+        It turned out to be almost exactly the skill a knowledge base needs when the reader is a language model
+        instead of a person.
+      </p>
+
+      <p>
+        I joined Search Atlas in June 2025 to build an AI Automation function that didn't yet exist. There was no AI
+        governance model, no production connectors between the support chatbot and the company's internal services,
+        and a 250-article knowledge base written for humans reading top to bottom rather than for a model retrieving
+        one specific answer. Fourteen months later, that chatbot — Fin AI — resolves roughly 70% of conversations
+        without a human, up from about 30%, and the knowledge base behind it holds 2,056 structured, AI-ready
+        articles.
+      </p>
+
+      <p><strong>The work that got it there:</strong></p>
+
+      <ul>
+        <li>
+          Led the integration of Fin AI across 12 internal services and 11 engineering teams, authoring the V1
+          Canonical Runtime Schema — the shared data contract every one of the 19 live Data Connectors and 17
+          operational Procedures had to implement.
+        </li>
+        <li>
+          Redesigned the conversational architecture from first principles: expanded the Guidance Prompt library
+          from 0 to 78 and took chatbot resolution from ~30% to ~70% in under two months.
+        </li>
+        <li>
+          Expanded the production knowledge base from 250 to 2,056 structured articles through a pipeline that
+          generated 1,687 AI-assisted drafts, published 1,320 improvements, and closed 331 identified knowledge gaps
+          — while a companion governance system removed 446 duplicate articles and audited 649 Guidance issues.
+        </li>
+        <li>
+          Built the surrounding automation layer — knowledge-gap detection, conversation recovery, documentation
+          governance, browser-based UI auditing, and operational reporting — using Claude Code, Python, Playwright,
+          SQLite, and n8n.
+        </li>
+      </ul>
+
+      <p>
+        Outside of AI engineering, I'm the author of "Lee en español," founder and editor of two Spanish-language
+        learning magazines, and a former university lecturer on Spanish as a foreign language across Colombia and
+        Poland. That background is why I default to treating documentation and prompts as editorial problems first
+        — clarity, structure, and audience — before I treat them as engineering problems.
+      </p>
+
+      <p>
+        I'm currently going deeper on LangChain, LangGraph, advanced Retrieval-Augmented Generation, vector
+        databases (Qdrant, Pinecone, Weaviate), and formal LLM evaluation — the next layer needed to keep pushing
+        resolution rate and knowledge quality past where prompt and knowledge-base work alone can take them.
+      </p>
+    </div>
+
+    <div class="mt-14">
+      <h2 class="text-xl font-semibold tracking-tight text-ink-100">Languages</h2>
+      <dl class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+        {
+          profile.languages.map((language) => (
+            <div>
+              <dt class="text-sm text-ink-100">{language.name}</dt>
+              <dd class="text-xs text-ink-400">{language.level}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="mt-14">
+      <h2 class="text-xl font-semibold tracking-tight text-ink-100">Capabilities</h2>
+      <div class="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2">
+        {skillGroups.map((group) => <SkillGroup title={group.title} skills={group.skills} />)}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

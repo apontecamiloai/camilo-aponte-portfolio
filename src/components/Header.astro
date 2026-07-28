@@ -1,0 +1,43 @@
+---
+import { primaryNav } from '../data/navigation';
+import { profile } from '../data/profile';
+import MobileNav from './MobileNav.astro';
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-40 border-b border-border-muted bg-navy-950/90 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-content items-center justify-between px-6 py-4 md:px-8">
+    <a href="/" class="font-mono text-sm font-medium tracking-tight text-ink-100 hover:text-accent-400">
+      {profile.name}
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-8">
+        {
+          primaryNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'text-sm transition-colors hover:text-accent-400',
+                  isActive(item.href) ? 'text-ink-100 font-medium' : 'text-ink-400',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <MobileNav />
+  </div>
+</header>

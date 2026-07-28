@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/geist-mono';
+
+@theme {
+  /* Surfaces */
+  --color-navy-950: #070a12;
+  --color-navy-900: #0b101c;
+  --color-navy-850: #0f1626;
+  --color-navy-800: #121a2b;
+  --color-navy-700: #1a2438;
+  --color-surface: #f7f5f0;
+  --color-surface-muted: #ece9e2;
+
+  /* Borders */
+  --color-border-muted: #2a3346;
+  --color-border-subtle: #1c2438;
+  --color-border-muted-light: #d8dae0;
+
+  /* Accent */
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #3b82f6;
+  --color-accent-600: #2563eb;
+
+  /* Text */
+  --color-ink-900: #0a0e17;
+  --color-ink-100: #f4f2ec;
+  --color-ink-400: #9aa4b8;
+  --color-ink-500: #6b7690;
+
+  /* Fonts */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Container */
+  --container-content: 72rem;
+
+  /* Elevation — subtle, dark-UI-appropriate card lift (no glassmorphism, no glow) */
+  --shadow-card: 0 1px 0 0 rgba(244, 242, 236, 0.03) inset, 0 12px 32px -20px rgba(0, 0, 0, 0.65);
+  --shadow-card-hover: 0 1px 0 0 rgba(244, 242, 236, 0.05) inset, 0 20px 40px -18px rgba(0, 0, 0, 0.75);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-navy-950);
+    color: var(--color-ink-100);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-500);
+    color: var(--color-ink-900);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent-400);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 1rem;
+    z-index: 100;
+    background-color: var(--color-accent-500);
+    color: var(--color-ink-900);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+  }
+
+  .prose-body {
+    max-width: 68ch;
+  }
+
+  .prose-body h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-ink-100);
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-body h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-ink-100);
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-body p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    color: var(--color-ink-400);
+  }
+
+  .prose-body ul {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    list-style: disc;
+    color: var(--color-ink-400);
+  }
+
+  .prose-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .prose-body strong {
+    color: var(--color-ink-100);
+  }
+}

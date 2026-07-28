@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { profile } from '../data/profile';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const resumeFilePath = path.join(process.cwd(), 'public', 'resume', profile.resumeFileName);
+const resumeExists = fs.existsSync(resumeFilePath);
+---
+
+<BaseLayout
+  title="Resume"
+  description="Resume for Camilo Aponte — AI Automation Engineer, Search Atlas. Fin AI integrations, knowledge engineering, and enterprise automation."
+>
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8">
+    <SectionHeading eyebrow="Resume" heading={profile.name} description={profile.role} />
+    <p class="mt-2 font-mono text-sm text-ink-400">{profile.positioning}</p>
+
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-ink-400">
+      Twenty years of writing and documentation experience — journalism, language education, and localization QA —
+      plus the last fourteen months applying that discipline to AI knowledge engineering, condensed into one PDF, for
+      roles in AI Automation, Knowledge Management, Conversational AI, and Enterprise Documentation.
+    </p>
+
+    <div class="mt-8">
+      {
+        resumeExists ? (
+          <a
+            href={profile.resumeUrl}
+            download
+            class="inline-block rounded bg-accent-500 px-5 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-accent-400"
+          >
+            Download Resume (PDF)
+          </a>
+        ) : (
+          <div class="rounded-md border border-border-subtle bg-navy-850 p-5 shadow-card">
+            <p class="text-sm text-ink-400">
+              Resume PDF coming soon. [DETAIL TO ADD: add the file at{' '}
+              <code class="font-mono text-ink-100">public/resume/{profile.resumeFileName}</code>]
+            </p>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="mt-14">
+      <CallToAction
+        heading="Have a role in mind?"
+        description="Interested in production AI systems, agentic workflows, enterprise automation, or knowledge engineering?"
+        primaryLabel="Get in touch"
+        primaryHref="/contact"
+      />
+    </div>
+  </div>
+</BaseLayout>

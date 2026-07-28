@@ -1,0 +1,38 @@
+---
+title: "Weekly Fin/KB Reporting Bot"
+slug: "weekly-fin-kb-reporting-bot"
+summary: "An automated dashboard and scheduled script that generates the recurring Fin AI / knowledge base performance report draft, removing a manual weekly reporting task."
+category: "AI Operations"
+role: "AI Automation Engineer"
+organization: "Search Atlas"
+startDate: 2025-06-01
+status: "ongoing"
+technologies: ["Claude Code", "Python", "Intercom", "ClickUp"]
+featured: false
+metrics: []
+confidentiality: "generalized"
+published: 2026-07-27
+draft: false
+order: 7
+---
+
+import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import LessonsLearned from '../../components/LessonsLearned.astro';
+
+## Context
+
+Reporting on Fin AI's resolution rate and knowledge base health was, at first, a manual weekly task: pull numbers from Intercom, cross-reference ClickUp, and write up what changed. That's a predictable, mechanical task — exactly the kind that shouldn't cost a person an afternoon every week.
+
+## Approach
+
+A scheduled script combines data from Intercom and ClickUp with internal pipeline metrics to generate the recurring performance report draft automatically, on a weekly cadence. The output is a draft, not a final report — someone still reviews it before it goes out — but the pull-and-assemble work that used to consume the most time now happens on its own.
+
+## Outcomes
+
+A standing operational report that's ready before anyone has to ask for it, freeing up the time that used to go into manually assembling the same numbers every week.
+
+<LessonsLearned>
+Recurring reports are a good early automation target precisely because they're boring and predictable — there's no judgment call in pulling last week's numbers, which makes it safe to automate fully and reserve human time for the parts of reporting that actually require interpretation.
+</LessonsLearned>
+
+<ConfidentialityNote variant="short" />

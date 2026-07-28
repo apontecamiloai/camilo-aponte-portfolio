@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Writing"
+  description="Technical writing on production AI systems, knowledge engineering, and enterprise automation by Camilo Aponte."
+>
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8">
+    <SectionHeading eyebrow="Writing" heading="Writing" description="Notes from building an AI support system in production — what worked, what broke, and what the data actually said." />
+
+    <div class="mt-10">
+      {
+        articles.length > 0 ? (
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {articles.map((article) => <ArticleCard article={article} />)}
+          </div>
+        ) : (
+          <div class="rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card">
+            <p class="text-sm text-ink-400">
+              Coming soon: <span class="text-ink-100">Building an Enterprise AI Support System From Scratch: One
+              Year in Numbers</span>.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

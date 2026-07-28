@@ -1,0 +1,26 @@
+---
+title: "Semantic Duplicate Detection: Finding the Content You Didn't Know You Had Twice"
+slug: "semantic-duplicate-detection"
+summary: "446 duplicate articles removed from a knowledge base that thought it didn't have any. Why duplicate content is a retrieval bug, not a housekeeping issue, and how similarity search — not keyword matching — is what actually finds it."
+published: 2026-07-06
+tags: ["Knowledge Engineering", "Semantic Search", "Documentation Governance"]
+draft: false
+---
+
+Ask most content owners whether their knowledge base has duplicate articles, and the honest answer is usually "not that I know of." That's exactly the problem: duplicates rarely look like duplicates. They're two articles written months apart, by different authors, in different words, answering the same underlying question — invisible to a keyword search, and invisible to anyone skimming titles.
+
+## Why keyword matching misses the real duplicates
+
+A title search for "billing" will not catch that "Updating Your Payment Method" and "How to Change Your Card on File" are the same article wearing two names. The duplication isn't in the vocabulary — it's in the intent behind the question. Catching that requires comparing what an article *means*, not what words it contains.
+
+## What semantic similarity search actually finds
+
+Using embedding-based similarity search instead of keyword overlap, a duplicate-content auditor can compare articles by underlying meaning rather than surface phrasing. Applied against a 2,056-article knowledge base, this process identified and resolved 446 duplicate articles — content that had been quietly fragmenting the answer to a single question across multiple entries, each one incomplete on its own.
+
+## Why this matters more for AI retrieval than for human readers
+
+A human searcher who lands on the "wrong" one of two duplicate articles usually still gets a usable, if incomplete, answer. A retrieval system deciding which of two similar articles to surface to a conversational AI agent doesn't have that flexibility — it picks one, and if that one is the outdated or incomplete version, the agent's answer is wrong with full confidence. Duplicate content isn't a housekeeping annoyance in an AI-retrieval context; it's a silent, ongoing cause of specifically wrong answers.
+
+## Running it continuously, not as a cleanup project
+
+The temptation is to treat duplicate detection as a one-time audit: sweep the knowledge base once, resolve what you find, move on. That approach guarantees the problem returns the moment the knowledge base keeps growing. Running duplicate detection as a standing, continuous process — alongside gap detection and UI-drift auditing — is what keeps a knowledge base's growth from quietly degrading its own retrieval quality over time.

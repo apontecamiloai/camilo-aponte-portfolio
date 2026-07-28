@@ -1,0 +1,31 @@
+---
+title: "Designing a Canonical Data Contract for Enterprise AI Connectors"
+slug: "canonical-data-contract-enterprise-ai-connectors"
+summary: "Integrating an AI agent with 12 internal services and 11 engineering teams doesn't scale on goodwill — it scales on a shared data contract every connector has to implement. What that contract actually needs to define."
+published: 2026-06-29
+tags: ["Enterprise AI", "API Integration", "Data Contract Design"]
+draft: false
+---
+
+Connecting a conversational AI agent to one internal service is an integration problem. Connecting it to twelve, owned by eleven different engineering teams, is a coordination problem — and coordination problems don't scale on goodwill or one-off conversations. They scale on a contract every team can build against independently, without renegotiating the basics each time.
+
+## What a canonical schema actually has to standardize
+
+A shared runtime schema for AI connectors needs to define, at minimum:
+
+- **Field naming** — so the same concept isn't called three different things across three connectors, silently breaking the agent's ability to reason across them consistently.
+- **Availability semantics** — what it means for data to be "available," "pending," or "not applicable," standardized so the agent can reason about state instead of interpreting each connector's conventions individually.
+- **Fallback semantics** — what the agent should do when a connector can't answer, defined once instead of improvised per integration.
+- **Retry behavior** — so a slow or temporarily failing service degrades predictably instead of producing an inconsistent agent response depending on which connector happens to be having a bad moment.
+
+Authoring this standard once, before the second or third connector shipped, meant every new integration could be reviewed against one spec instead of renegotiated from first principles.
+
+## The usability trap that almost shipped
+
+One proposed data contract would have required customers to supply a numeric account ID before the agent could look anything up. On paper, that's a clean, unambiguous identifier for engineering. In practice, it's a real usability failure: almost no customer carries their internal account ID into a support conversation. Pushing back on that design and redesigning the lookup around domain-based identification instead — resolving a customer's context from information they'd naturally already provide — is the kind of decision a canonical schema makes possible to catch early, because it forces the conversation about *how* customers will actually be identified before eleven teams have each built around a different assumption.
+
+Diagnosing this class of gap also surfaced a `customer_id` / `user_id` mismatch between systems that engineering later confirmed as a root cause of a separate class of failures — a discovery that came directly out of insisting on one consistent identification contract across every connector.
+
+## The payoff
+
+Nineteen live connectors and seventeen operational procedures now share one contract instead of eleven interpretations of "close enough." That consistency is what let a conversational AI agent reason about live state across a dozen different services as if it were one system, instead of eleven separate integrations wearing a shared interface.

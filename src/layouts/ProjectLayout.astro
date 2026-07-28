@@ -1,0 +1,59 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ProjectHero from '../components/ProjectHero.astro';
+import ConfidentialityNote from '../components/ConfidentialityNote.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import MetricGrid from '../components/MetricGrid.astro';
+import PreviousNextNavigation from '../components/PreviousNextNavigation.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+
+interface NavEntry {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  headings: MarkdownHeading[];
+  previous?: NavEntry;
+  next?: NavEntry;
+}
+
+const { project, headings, previous, next } = Astro.props;
+const { title, summary, metrics } = project.data;
+---
+
+<BaseLayout title={title} description={summary} ogType="article">
+  <ProjectHero project={project} />
+
+  <div class="mx-auto max-w-content px-6 py-12 md:px-8">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_16rem]">
+      <div>
+        <div class="mb-8">
+          <ConfidentialityNote />
+        </div>
+
+        {
+          metrics.length > 0 && (
+            <div class="mb-10">
+              <MetricGrid metrics={metrics} />
+            </div>
+          )
+        }
+
+        <div class="prose-body">
+          <slot />
+        </div>
+
+        <PreviousNextNavigation previous={previous} next={next} />
+      </div>
+
+      <aside class="hidden md:block">
+        <div class="sticky top-24">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
