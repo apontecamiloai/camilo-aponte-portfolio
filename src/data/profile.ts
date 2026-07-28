@@ -48,6 +48,5 @@ export const profile: Profile = {
   ],
   resumeFileName: 'camilo-aponte-ai-automation-engineer-resume.pdf',
   resumeUrl: '/resume/camilo-aponte-ai-automation-engineer-resume.pdf',
-  // [DETAIL TO ADD: final Open Graph image, 1200x630]
   ogImage: '/og-image.png',
 };
