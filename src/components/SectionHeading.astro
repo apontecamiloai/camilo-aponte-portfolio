@@ -3,7 +3,7 @@ interface Props {
   eyebrow?: string;
   heading: string;
   description?: string;
-  level?: 'h2' | 'h3';
+  level?: 'h1' | 'h2' | 'h3';
 }
 
 const { eyebrow, heading, description, level = 'h2' } = Astro.props;
