@@ -8,20 +8,17 @@ const { steps, caption } = Astro.props;
 ---
 
 <figure class="my-8 rounded-md border border-border-subtle bg-navy-850 p-6 shadow-card">
-  <div class="flex flex-col items-stretch gap-2 overflow-x-auto md:flex-row md:flex-wrap md:items-center md:gap-3">
+  <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-3 lg:grid-cols-6">
     {
       steps.map((step, index) => (
-        <>
-          <div class="min-w-0 flex-1 basis-32 rounded border border-border-muted bg-navy-950 px-4 py-3 text-center font-mono text-sm text-ink-100">
-            {step}
-          </div>
-          {index < steps.length - 1 && (
-            <div class="flex shrink-0 items-center justify-center text-accent-400" aria-hidden="true">
-              <span class="hidden md:inline">&rarr;</span>
-              <span class="md:hidden">&darr;</span>
-            </div>
+        <div class="flex min-w-0 flex-col items-center justify-center gap-1 rounded border border-border-muted bg-navy-950 px-2 py-3 text-center font-mono text-sm text-ink-100">
+          {index > 0 && (
+            <span class="text-xs text-accent-400" aria-hidden="true">
+              &rarr;
+            </span>
           )}
-        </>
+          <span class="break-words">{step}</span>
+        </div>
       ))
     }
   </div>
