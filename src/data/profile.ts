@@ -42,7 +42,10 @@ export const profile: Profile = {
     { name: 'English', level: 'C2 — Advanced' },
     { name: 'Polish', level: 'B2 — Intermediate' },
   ],
-  socials: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/camiloapontelara' }],  // [DETAIL TO ADD: resume PDF export] — place the file at public/resume/ using this exact name.
+  socials: [
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/camiloapontelara' },
+    { label: 'GitHub', url: 'https://github.com/apontecamiloai' },
+  ],
   resumeFileName: 'camilo-aponte-ai-automation-engineer-resume.pdf',
   resumeUrl: '/resume/camilo-aponte-ai-automation-engineer-resume.pdf',
   // [DETAIL TO ADD: final Open Graph image, 1200x630]
