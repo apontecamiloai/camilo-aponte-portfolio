@@ -22,9 +22,9 @@ metrics:
   - label: "Chatbot resolution rate"
     value: "30% → 70%"
     description: "Original conversational redesign, within two months"
-  - label: "Sustained resolution rate"
-    value: "60%"
-    description: "7-day trailing, n=732; first sustained break above a ~9-month plateau"
+  - label: "Average CSAT"
+    value: "95%"
+    description: "14 months"
   - label: "Escalations matching known issues"
     value: "~29%"
     description: "Single measured day; Known Issues detection pipeline"
@@ -88,13 +88,9 @@ Closing that gap meant redesigning how Fin AI reasons, not just what it can look
 - **Known Issues detection** — matching a customer's problem against existing Engineering issues before attempting to re-diagnose it from scratch. On one measured day, roughly **29% of escalations** already matched a known Engineering issue.
 - **Consistent escalation logic** — predictable rules for when to hand off to a human instead of ad hoc judgment calls.
 
-## Recent momentum
-
-That redesign, combined with the connector rollout described above, produced the first sustained break above the nine-month plateau: Fin AI's resolution rate reached **65%** on a single day (n=32 conversations) and held at **60%** over the trailing 7 days (n=732). I hold this number carefully — resolution rate is a system-level metric shaped by Engineering, Product, Billing, and Support, not something AI ownership alone moves. What did move it was correctly diagnosing that the bottleneck was live operational context, not content coverage.
-
 ## Outcomes
 
-12 internal services connected, 11 engineering teams coordinated, 19 live Data Connectors and 17 Procedures shipped, a canonical data-contract standard adopted across every integration in the program, and — in the current phase — a sustained resolution rate above a plateau that had held for roughly nine months.
+12 internal services connected, 11 engineering teams coordinated, 19 live Data Connectors and 17 Procedures shipped, a canonical data-contract standard adopted across every integration in the program, chatbot resolution up from ~30% to ~70%, and an average CSAT of 95% over 14 months.
 
 <LessonsLearned>
 The hardest part of an integration program like this isn't writing any single connector — it's getting independent teams to agree on one contract before they start building. Authoring the schema first, and being willing to challenge a proposed design (like the numeric account ID requirement) before it shipped, saved far more rework than it cost in up-front negotiation. Later, the same discipline applied to diagnosis: a plateaued metric is not automatically a content problem, and confirming that took more evidence-gathering than assuming it and writing more articles.
